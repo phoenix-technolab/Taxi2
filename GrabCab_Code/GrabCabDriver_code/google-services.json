@@ -1,0 +1,83 @@
+{
+  "project_info": {
+    "project_number": "275790238573",
+    "firebase_url": "https://taxi-286013.firebaseio.com",
+    "project_id": "taxi-286013",
+    "storage_bucket": "taxi-286013.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275790238573:android:90a3ca375ce51d10b88064",
+        "android_client_info": {
+          "package_name": "com.wf.app2taxiDriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275790238573-ng20291rbp2n3bp82ce1s1478fddm0df.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHW2osYNsSdbbW8CmhmsysGSCCQtB-ucY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275790238573-ng20291rbp2n3bp82ce1s1478fddm0df.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "275790238573-e2sb2nio426l5dt052nqh2cb0gtr6kh8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.wf.tepoztaxi"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275790238573:android:34ef3fd81544684db88064",
+        "android_client_info": {
+          "package_name": "com.wf.taxi2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275790238573-ng20291rbp2n3bp82ce1s1478fddm0df.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHW2osYNsSdbbW8CmhmsysGSCCQtB-ucY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275790238573-ng20291rbp2n3bp82ce1s1478fddm0df.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "275790238573-e2sb2nio426l5dt052nqh2cb0gtr6kh8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.wf.tepoztaxi"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

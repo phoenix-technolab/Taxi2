@@ -1,0 +1,91 @@
+{
+  "expo": {
+    "name": "2Taxi",
+    "description": "2Taxi reservaciones App",
+    "slug": "2Taxi",
+    "privacy": "public",
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "notification": {
+      "icon": "./assets/images/push_notification.png"
+    },
+    "version": "1.3",
+    "orientation": "portrait",
+    "icon": "./assets/images/appIcon.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "usesAppleSignIn": true,
+      "bundleIdentifier": "com.wf.taxi2",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Esta aplicación usa la ubicación para encontrar los taxis cerca de usted.",
+        "NSCameraUsageDescription": "Esta aplicación usa la cámara para tomar tu foto de perfil.",
+        "NSPhotoLibraryUsageDescription": "Esta aplicación utiliza la biblioteca de fotos para cargar su foto de perfil.",
+        "ITSAppUsesNonExemptEncryption":false,
+        "UIBackgroundModes": [
+          "fetch"
+        ]
+      },
+      "config": {
+        "googleMapsApiKey": "AIzaSyDzJbNQML1l3q6xAAYioMqyZA7z914l_bk",
+        "googleSignIn": {
+          "reservedClientId": "com.googleusercontent.apps.275790238573-2b8qp0ap3e211t99db189runtjnsp9hv"
+        }
+      },
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "buildNumber": "1.3"
+    },
+    "android": {
+      "package": "com.wf.taxi2",
+      "versionCode": 13,
+      "permissions": [
+        "CAMERA",
+        "READ_EXTERNAL_STORAGE",
+        "WRITE_EXTERNAL_STORAGE",
+        "LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "CAMERA_ROLL"
+      ],
+      "googleServicesFile": "./google-services.json",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDzJbNQML1l3q6xAAYioMqyZA7z914l_bk"
+        }
+      },
+      "useNextNotificationsApi": true
+    },
+    "facebookScheme": "fb354554732377176",
+    "facebookAppId": "354554732377176",
+    "facebookDisplayName": "2taxi.online",
+    "extra":{
+      "firebaseConfig":{
+        "apiKey": "AIzaSyDzJbNQML1l3q6xAAYioMqyZA7z914l_bk",
+        "authDomain": "taxi-286013.firebaseapp.com",
+        "databaseURL": "https://taxi-286013.firebaseio.com",
+        "projectId": "taxi-286013",
+        "storageBucket": "taxi-286013.appspot.com",
+        "messagingSenderId": "275790238573",
+        "appId": "1:275790238573:web:4fa53b019f09647eb88064",
+        "measurementId": "G-THGBQ4QEDX"
+      },
+      "googlemapkey":"AIzaSyDzJbNQML1l3q6xAAYioMqyZA7z914l_bk",
+      "cloud_function_server_url":"https://us-central1-taxi-286013.cloudfunctions.net",
+      "iosStandaloneAppClientId": "275790238573-2b8qp0ap3e211t99db189runtjnsp9hv.apps.googleusercontent.com",
+      "androidStandaloneAppClientId": "275790238573-tfpej3fm1ld8g71h9j0k9v2olovlhkf7.apps.googleusercontent.com"
+    }
+  }
+} 
+

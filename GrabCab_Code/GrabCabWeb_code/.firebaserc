@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "taxi-286013"
+  },
+  "targets": {
+    "taxi-286013": {
+      "hosting": {
+        "admin": [
+          "taxi-286013"
+        ],
+        "website": [
+          "taxi2-omar"
+        ]
+      }
+    }
+  }
+}

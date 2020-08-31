@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "275790238573",
+    "firebase_url": "https://taxi-286013.firebaseio.com",
+    "project_id": "taxi-286013",
+    "storage_bucket": "taxi-286013.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275790238573:android:90a3ca375ce51d10b88064",
+        "android_client_info": {
+          "package_name": "com.wf.app2taxiDriver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275790238573-ig6njoggks4k6h3nbmrr2tm6sg4g90hl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wf.app2taxiDriver",
+            "certificate_hash": "461caba5959f56340a6b015086ac091fe5f49e96"
+          }
+        },
+        {
+          "client_id": "275790238573-ng20291rbp2n3bp82ce1s1478fddm0df.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHW2osYNsSdbbW8CmhmsysGSCCQtB-ucY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275790238573-ng20291rbp2n3bp82ce1s1478fddm0df.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "275790238573-2b8qp0ap3e211t99db189runtjnsp9hv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.wf.taxi2"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:275790238573:android:34ef3fd81544684db88064",
+        "android_client_info": {
+          "package_name": "com.wf.taxi2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "275790238573-tfpej3fm1ld8g71h9j0k9v2olovlhkf7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wf.taxi2",
+            "certificate_hash": "5b73f54cbff3346dbf6ad18322bfdd2a5259281d"
+          }
+        },
+        {
+          "client_id": "275790238573-ng20291rbp2n3bp82ce1s1478fddm0df.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHW2osYNsSdbbW8CmhmsysGSCCQtB-ucY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "275790238573-ng20291rbp2n3bp82ce1s1478fddm0df.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "275790238573-2b8qp0ap3e211t99db189runtjnsp9hv.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.wf.taxi2"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
