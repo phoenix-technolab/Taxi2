@@ -54,12 +54,14 @@ export default function LoginPage(props) {
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   const [loginType, setLoginType] = React.useState(0);
   const [activeReg, setActiveReg] = React.useState(false);
+  const [activeRegistration, setActiveRegistration] = React.useState(false);
   const [openFPModal, setOpenFPModal] = React.useState(false);
   const [capatchaReady, setCapatchaReady] = React.useState(false);
 
   const [data, setData] = React.useState({
     email: '',
     pass: '',
+    confirm_pass: '',
     country: '',
     mobile: '',
     password: '',
@@ -179,7 +181,7 @@ export default function LoginPage(props) {
     dispatch(signOut());
     setTabDisabled(false);
     setActiveReg(false);
-    
+    setActiveRegistration(false);
   }
 
   const onCountryChange = (object, value) => {
@@ -201,6 +203,11 @@ export default function LoginPage(props) {
     e.preventDefault();
     setOpenFPModal(true);
   };
+
+  const handleRegistration = (e) => {
+    e.preventDefault();
+    setActiveRegistration(true);
+  }
 
   const onFPModalEmailChange = (e) => {
     e.preventDefault();
@@ -227,8 +234,57 @@ export default function LoginPage(props) {
   const completeRegistration = (e) => {
     e.preventDefault();
     dispatch(addProfile(data));
-
   };
+
+  const createUserWithEmailAndPassword = async (e) => {
+    e.preventDefault();
+    if (validateEmail(data.email) && validatePassword(data.pass, 'alphanumeric')) {
+      if (data.pass == data.confirm_pass) {
+          try {
+              await firebase.auth().createUserWithEmailAndPassword(data.email, data.pass);
+          } catch (error) {
+              setCommonAlert({ open: true, msg: error.code + " - " + error.message });
+              setData({...data,email: '', pass: '', confirm_pass: ''})
+          }
+      } else {
+          setCommonAlert({ open: true, msg: languageJson.confrim_password_not_match_err });
+      }
+    }
+  }
+
+  const validatePassword = (password, complexity) => {
+    const regx1 = /^([a-zA-Z0-9@*#]{8,15})$/
+    const regx2 = /(?=^.{6,10}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$/
+    if (complexity == 'any') {
+        var passwordValid = password.length >= 1;
+        if (!passwordValid) {
+            setCommonAlert({ open: true, msg: languageJson.password_blank_messege });
+        }
+    }
+    else if (complexity == 'alphanumeric') {
+        var passwordValid = regx1.test(password);
+        if (!passwordValid) {
+            setCommonAlert({ open: true, msg: languageJson.password_alphaNumeric_check });
+
+        }
+    }
+    else if (complexity == 'complex') {
+        var passwordValid = regx2.test(password);
+        if (!passwordValid) {
+            setCommonAlert({ open: true, msg: languageJson.password_complexity_check });
+        }
+    }
+    return passwordValid
+}
+
+  const validateEmail = (email) => {
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    const emailValid = re.test(email);
+    if (!emailValid) {
+        alert(languageJson.valid_email_check);
+    }
+    return emailValid;
+  }
 
   return (
     <div>
@@ -291,7 +347,8 @@ export default function LoginPage(props) {
                   </Paper>
 
                   <CardBody>
-                    {(loginType === 0 && !activeReg) || (activeReg && loginType ===1)?    //EMAIL
+                  
+                    {(loginType === 0 && !activeReg && !activeRegistration) || (activeReg && loginType ===1 || activeRegistration)?    //EMAIL
                       <CustomInput
                         labelText={languageJson.email}
                         id="email"
@@ -311,6 +368,7 @@ export default function LoginPage(props) {
                         value={data.email}
                       />
                       : null}
+
                     {loginType === 0 && !auth.info?   //PASSWORD
                       <CustomInput
                         labelText={languageJson.password}
@@ -334,13 +392,38 @@ export default function LoginPage(props) {
                         value={data.pass}
                       />
                       : null}
-                    {(loginType === 1 && !activeReg) || (loginType === 0 && activeReg) ?   // COUNTRY
+
+                    {activeRegistration?   //Confirm PASSWORD
+                      <CustomInput
+                        labelText={languageJson.confrim_password_placeholder}
+                        id="confirm_pass"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          type: "password",
+                          required: true,
+                          endAdornment: (
+                            <InputAdornment position="end">
+                              <Icon className={classes.inputIconsColor}>
+                                lock_outline
+                            </Icon>
+                            </InputAdornment>
+                          ),
+                          autoComplete: "off"
+                        }}
+                        onChange={onInputChange}
+                        value={data.confirm_pass}
+                      />
+                      : null}
+
+                    {(loginType === 1 && !activeReg && !activeRegistration) || (loginType === 0 && activeReg && !activeRegistration) ?   // COUNTRY
                       <CountrySelect
                         onChange={onCountryChange}
                         disabled={data.verificationId ? true : false}
                       />
                       : null}
-                    {(loginType === 1  && !activeReg) || (loginType === 0 && activeReg) ?   //MOBILE
+                    {(loginType === 1  && !activeReg && !activeRegistration) || (loginType === 0 && activeReg && !activeRegistration) ?   //MOBILE
                       <CustomInput
                         labelText={languageJson.phone}
                         id="mobile"
@@ -383,7 +466,7 @@ export default function LoginPage(props) {
                         value={data.otp}
                       />
                       : null}
-                  {loginType === 0 && activeReg === false ?   //FORGOT PASSWORD
+                  {loginType === 0 && activeReg === false && !activeRegistration?   //FORGOT PASSWORD
                     <RegularButton 
                       color="inherit" 
                       onClick={handleForgotPass}
@@ -396,7 +479,20 @@ export default function LoginPage(props) {
                         Olvido la contraseña?
                     </RegularButton>
                   : null}
-                    {activeReg ?
+                  {loginType === 0 && activeReg === false && !activeRegistration?   //Registration
+                    <RegularButton 
+                      color="inherit" 
+                      onClick={handleRegistration}
+                      disableElevation={true}
+                      disableFocusRipple={true}
+                      disableRipple={true}
+                      className={classes.registrationButton}
+                      variant="text"
+                    >
+                        Registro
+                    </RegularButton>
+                  : null}
+                    {activeReg && !activeRegistration?
                       <CustomInput   // FIRST NAME
                         labelText={languageJson.firstname}
                         id="firstName"
@@ -416,7 +512,7 @@ export default function LoginPage(props) {
                         value={data.firstName}
                       />
                       : null}
-                    {activeReg ?
+                    {activeReg && !activeRegistration?
                       <CustomInput    // LAST NAME
                         labelText={languageJson.lastname}
                         id="lastName"
@@ -438,34 +534,41 @@ export default function LoginPage(props) {
                       : null}
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    {loginType === 0 && activeReg === false ?
+                    {loginType === 0 && activeReg === false && !activeRegistration ?
                       <Button className={classes.normalButton} simple color="primary" size="lg" onClick={handleSubmit}>
                         {languageJson.login}
                     </Button>
                       : null}
-                    {loginType === 0 && activeReg === false ?
+                    {loginType === 0 && activeReg === false && !activeRegistration?
                       <Button className={classes.normalButton} simple color="primary" size="lg" onClick={handleRegister}>
                         {languageJson.register}
                     </Button>
                       : null}
 
-                    {loginType === 1 && !data.verificationId && activeReg === false ?
+                    {loginType === 1 && !data.verificationId && activeReg === false && !activeRegistration?
                       <Button className={classes.normalButton} simple color="primary" size="lg" onClick={handleGetOTP}>
                         {languageJson.get_otp}
                     </Button>
                       : null}
-                    {data.verificationId && activeReg === false ?
+                    {data.verificationId && activeReg === false && !activeRegistration?
                       <Button className={classes.normalButton} simple color="primary" size="lg" onClick={handleVerifyOTP}>
                         {languageJson.verify_otp}
                     </Button>
                       : null}
 
-                    {activeReg ?
+                    {activeReg && !activeRegistration?
                       <Button className={classes.normalButton} simple color="primary" size="lg" onClick={completeRegistration}>
                         {languageJson.complete_registration}
                     </Button>
                       : null}
-                    {data.verificationId || activeReg ?
+
+                    {activeRegistration && !activeReg?
+                      <Button className={classes.normalButton} simple color="primary" size="lg" onClick={createUserWithEmailAndPassword}>
+                        {languageJson.complete_registration}
+                      </Button>
+                      : null}
+
+                    {data.verificationId || activeReg || activeRegistration?
                       <Button className={classes.normalButton} simple color="primary" size="lg" onClick={handleCancel}>
                         {languageJson.cancel}
                     </Button>

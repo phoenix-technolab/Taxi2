@@ -1,6 +1,7 @@
 {
   "projects": {
-    "default": "taxi-286013"
+    "default": "taxi-286013",
+    "taxi": "practice-81b3d"
   },
   "targets": {
     "taxi-286013": {

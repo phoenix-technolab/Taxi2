@@ -94,6 +94,14 @@ const signupPageStyle = {
     color: '#828282',
     fontSize:10
   },
+  registrationButton:{
+    margin:0,
+    marginTop: "-20px",
+    textTransform: "none",
+    padding: '0 0',
+    color: '#828282',
+    fontSize:10
+  },
   normalButton:{
     margin:0,
     marginTop:'-15px'
